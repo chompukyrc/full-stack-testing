@@ -10,7 +10,7 @@ import {
   IsPhoneNumber,
 } from 'class-validator';
 
-export class CreateUserDto {
+export class UpdateUserDto {
   @IsString()
   first_name: string;
 

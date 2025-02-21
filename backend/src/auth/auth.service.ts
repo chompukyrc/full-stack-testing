@@ -1,6 +1,6 @@
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UsersService } from 'src/users/users.service';
-import { CreateUserDto } from 'src/dto/create-user.dto';
+import { RegisterDto } from './dto/register.dto';
 import { Injectable } from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
@@ -15,7 +15,7 @@ export class AuthService {
   ) {}
 
   // Register new user
-  async create(data: CreateUserDto) {
+  async create(data: RegisterDto) {
     const hashedPassword = bcrypt.hashSync(data.password, 10);
 
     return await this.prismaService.user.create({

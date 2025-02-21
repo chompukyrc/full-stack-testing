@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   Body,
   Controller,
@@ -8,11 +12,19 @@ import {
   Param,
   Put,
   Delete,
+  Post,
+  UseInterceptors,
+  UploadedFile,
+  ParseFilePipe,
+  MaxFileSizeValidator,
+  FileTypeValidator,
+  BadRequestException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from 'src/dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { PaginationDto } from 'src/dto/pagination.dto';
 import { IdDto } from 'src/dto/id.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('users')
 export class UsersController {
@@ -66,7 +78,7 @@ export class UsersController {
 
   // Update user
   @Put('/:id')
-  async update(@Param() params: IdDto, @Body() data: CreateUserDto) {
+  async update(@Param() params: IdDto, @Body() data: UpdateUserDto) {
     // find user by id
     const user = await this.usersService.findUserById(params.id);
     if (!user) {
@@ -122,5 +134,42 @@ export class UsersController {
         },
       );
     }
+  }
+
+  // Add picture image
+  @Post('/:id/profile_picture')
+  @UseInterceptors(FileInterceptor('picture'))
+  async addProfilePicture(
+    @Param() params: IdDto,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          // max size file is 5MB
+          new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
+          new FileTypeValidator({ fileType: /image\/(png|jpeg|jpg)/ }),
+        ],
+      }),
+    )
+    picture: Express.Multer.File,
+  ) {
+    console.log('params', params.id);
+    console.log('picture', picture.buffer.toString('base64'));
+
+    // find user by id
+    const user = await this.usersService.findUserById(params.id);
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    // update image to user
+    await this.usersService.addProfilePicture(
+      params.id,
+      picture.buffer.toString('base64'),
+    );
+
+    return {
+      status: HttpStatus.OK,
+      message: 'Profile picture added successfully.',
+    };
   }
 }
