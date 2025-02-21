@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   Body,
   Controller,
@@ -19,12 +15,14 @@ import {
   MaxFileSizeValidator,
   FileTypeValidator,
   BadRequestException,
+  Res,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PaginationDto } from 'src/dto/pagination.dto';
 import { IdDto } from 'src/dto/id.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Response } from 'express';
 
 @Controller('users')
 export class UsersController {
@@ -136,7 +134,7 @@ export class UsersController {
     }
   }
 
-  // Add picture image
+  // Add profile picture
   @Post('/:id/profile_picture')
   @UseInterceptors(FileInterceptor('picture'))
   async addProfilePicture(
@@ -153,6 +151,7 @@ export class UsersController {
     picture: Express.Multer.File,
   ) {
     console.log('params', params.id);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     console.log('picture', picture.buffer.toString('base64'));
 
     // find user by id
@@ -164,6 +163,7 @@ export class UsersController {
     // update image to user
     await this.usersService.addProfilePicture(
       params.id,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       picture.buffer.toString('base64'),
     );
 
@@ -171,5 +171,20 @@ export class UsersController {
       status: HttpStatus.OK,
       message: 'Profile picture added successfully.',
     };
+  }
+
+  // Get profile image
+  @Get('/:id/profile_picture')
+  async getProfilePicture(@Param() params: IdDto, @Res() res: Response) {
+    const user = await this.usersService.findUserById(params.id);
+
+    if (!user || !user.picture) {
+      throw new BadRequestException('user not found');
+    }
+
+    // convert base64 to buffer and return image
+    const buffer = Buffer.from(user.picture as string, 'base64');
+    res.setHeader('Content-Type', 'image/png');
+    res.send(buffer);
   }
 }
