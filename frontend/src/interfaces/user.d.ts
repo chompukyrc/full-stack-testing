@@ -1,6 +1,6 @@
 import { genderEnum } from "../enums/gender.enum";
 
-export interface RegisterData {
+export interface ISignUp {
     first_name: string;
     last_name: string;
     age: string;
@@ -9,5 +9,10 @@ export interface RegisterData {
     email: string;
     password: string;
     confirmPassword: string;
+}
+
+export interface ISignIn {
+    email: string;
+    password: string;
 }
 
