@@ -24,6 +24,7 @@ model User {
   password      String
   created_at    DateTime @default(now()) @db.Timestamptz()
   updated_at    DateTime @updatedAt @db.Timestamptz()
+  picture       String?
 }
 
 enum GenderEnum {
@@ -31,3 +32,4 @@ enum GenderEnum {
   Female
   NonBinary
 }
+

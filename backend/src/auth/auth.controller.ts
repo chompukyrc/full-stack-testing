@@ -7,7 +7,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateUserDto } from 'src/dto/create-user.dto';
+import { RegisterDto } from './dto/register.dto';
 import { UsersService } from 'src/users/users.service';
 import { LoginDto } from './dto/login.dto';
 
@@ -20,13 +20,14 @@ export class AuthController {
 
   // Register new user
   @Post('register')
-  async create(@Body() data: CreateUserDto) {
+  async create(@Body() data: RegisterDto) {
     const isUserExist = await this.usersService.findUserByEmail(data.email);
     if (isUserExist) {
       throw new HttpException('Email already in use', HttpStatus.CONFLICT);
     }
 
     try {
+      console.log('data', data);
       const createdUser = await this.authService.create(data);
       const { password, ...userWithoutPassword } = createdUser;
       return {
@@ -35,6 +36,7 @@ export class AuthController {
         data: userWithoutPassword,
       };
     } catch (error) {
+      console.log('error', error);
       throw new HttpException(
         'The record could not be created.',
         HttpStatus.INTERNAL_SERVER_ERROR,
