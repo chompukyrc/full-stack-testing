@@ -64,4 +64,18 @@ export class AuthController {
       data: user,
     };
   }
+
+  // Check email exist
+  @Post('check-email')
+  async checkEmail(@Body() data: { email: string }) {
+    const user = await this.usersService.findUserByEmail(data.email);
+    if (user) {
+      throw new HttpException('Email already in use', HttpStatus.CONFLICT);
+    }
+
+    return {
+      status: HttpStatus.OK,
+      message: 'Email is available.',
+    };
+  }
 }
