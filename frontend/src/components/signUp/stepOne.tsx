@@ -3,15 +3,29 @@ import { useAuthStore } from "../../stores/auth.store";
 import Icon from "@mdi/react";
 import { mdiEyeOffOutline, mdiEyeOutline } from "@mdi/js";
 import { checkEmailExists } from "../../api/auth";
+import * as z from "zod";
 
 interface StepOneProps {
     onNext: () => void;
 }
 
+// validation schema
+const formSchema = z
+    .object({
+        email: z.string().email({ message: "Invalid email address" }),
+        password: z.string(),
+        confirmPassword: z.string(),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+        path: ["confirmPassword"],
+        message: "Passwords do not match",
+    });
+
 const StepOne: React.FC<StepOneProps> = ({ onNext }) => {
     const { signUpForm, setSignUpForm } = useAuthStore();
     const { email, password, confirmPassword } = signUpForm;
     const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [errors, setErrors] = useState<Record<string, string>>({});
 
     const togglePasswordVisibility = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -24,19 +38,30 @@ const StepOne: React.FC<StepOneProps> = ({ onNext }) => {
     };
 
     const handleNext = async () => {
-        if (password !== confirmPassword) {
-            alert("Passwords does not match");
-            return;
-        }
-        // check if email already exists
-        const checkEmail = await checkEmailExists(email);
-        console.log(checkEmail);
-        if (!checkEmail) {
-            alert("Email already exists");
-            return;
-        }
+        try {
+            // validate
+            formSchema.parse({ email, password, confirmPassword });
 
-        onNext();
+            // Check if email already exists
+            if ((await checkEmailExists(email)) == false) {
+                alert("Email already exists");
+                return;
+            }
+
+            // Clear errors if validation passes
+            setErrors({});
+            onNext();
+        } catch (validationError) {
+            if (validationError instanceof z.ZodError) {
+                // Map errors to inputs
+                const err = validationError.flatten().fieldErrors;
+                setErrors({
+                    email: err.email?.[0] || "",
+                    password: err.password?.[0] || "",
+                    confirmPassword: err.confirmPassword?.[0] || "",
+                });
+            }
+        }
     };
 
     return (
@@ -45,18 +70,28 @@ const StepOne: React.FC<StepOneProps> = ({ onNext }) => {
                 onSubmit={(e) => e.preventDefault()}
                 className="w-96 space-y-5 text-black"
             >
-                <input
-                    className=" w-full px-[14px] py-[10px] rounded-lg text-sm"
-                    placeholder="Email"
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                    required
-                />
+                <div>
+                    <input
+                        className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${
+                            errors.email ? "border-red-400" : ""
+                        }`}
+                        placeholder="Email"
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={handleChange}
+                        required
+                    />
+                    {errors.email && (
+                        <p className="text-red-400 text-sm">{errors.email}</p>
+                    )}
+                </div>
+
                 <div className="relative">
                     <input
-                        className=" w-full px-[14px] py-[10px] rounded-lg text-sm"
+                        className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${
+                            errors.password ? "border-red-400" : ""
+                        }`}
                         placeholder="Password"
                         type={showPassword ? "text" : "password"}
                         name="password"
@@ -85,10 +120,18 @@ const StepOne: React.FC<StepOneProps> = ({ onNext }) => {
                             />
                         )}
                     </button>
+                    {errors.password && (
+                        <p className="text-red-400 text-sm">
+                            {errors.password}
+                        </p>
+                    )}
                 </div>
+
                 <div className="relative">
                     <input
-                        className=" w-full px-[14px] py-[10px] rounded-lg text-sm"
+                        className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${
+                            errors.confirmPassword ? "border-red-400" : ""
+                        }`}
                         placeholder="Confirm Password"
                         type={showPassword ? "text" : "password"}
                         name="confirmPassword"
@@ -117,7 +160,13 @@ const StepOne: React.FC<StepOneProps> = ({ onNext }) => {
                             />
                         )}
                     </button>
+                    {errors.confirmPassword && (
+                        <p className="text-red-400 text-sm">
+                            {errors.confirmPassword}
+                        </p>
+                    )}
                 </div>
+
                 <button
                     type="button"
                     className=" w-full px-[14px] py-[10px] rounded-lg bg-[#4338CA] text-white text-sm"
