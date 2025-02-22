@@ -9,14 +9,13 @@ interface UserState {
         last_name: string;
         gender: string;
         age: number;
-        phone_number: string;
+        phone_number: string | null;
         email: string;
         password: string;
         created_at: string;
         updated_at: string;
-        picture: null;
+        picture: string | null;
     };
-    // profileImage: string;
 }
 
 export const useUserStore = create<UserState>((set) => ({
@@ -37,6 +36,7 @@ export const useUserStore = create<UserState>((set) => ({
     getUserProfile: async (id: string) => {
         try {
             const res = await getUserProfile(id);
+            console.log("User data: ", res.data);
             set({ user: res.data });
         } catch (error) {
             console.error("Error fetching data: ", error);
