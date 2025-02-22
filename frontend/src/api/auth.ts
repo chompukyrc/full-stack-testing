@@ -27,8 +27,9 @@ export const signUpUser = async (data: ISignUp) => {
 export const signInUser = async (data: ISignIn) => {
     try {
         const response = await instance.post("/auth/login", data);
+        const token = response.data.data.access_token;
         // save the token in local storage
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", token);
         return response.data;
     } catch (error) {
         console.error("Error fetching data: ", error);

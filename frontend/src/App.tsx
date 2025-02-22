@@ -3,15 +3,17 @@ import SignUp from "./pages/signUp";
 import SignIn from "./pages/signIn";
 import Dashboard from "./pages/dashboard";
 
-export default function App() {
+const App: React.FC = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/sign-in" element={<SignIn />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/" element={<Dashboard />} />
             </Routes>
         </BrowserRouter>
     );
-}
+};
+
+export default App;
 
