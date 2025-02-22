@@ -1,5 +1,4 @@
 import React from "react";
-// import Header from "./header";
 import Sidebar from "./sideBar";
 
 import { ReactNode } from "react";
