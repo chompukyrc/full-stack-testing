@@ -23,8 +23,8 @@ const SignIn: React.FC = () => {
         try {
             await signInUser(signInForm);
             alert("Sign in successfully");
+            navigate("/");
             resetSignInForm();
-            navigate("/dashboard");
         } catch (error) {
             alert("Please check your email and password");
             console.log(error);
@@ -87,6 +87,17 @@ const SignIn: React.FC = () => {
                     >
                         Sign In
                     </button>
+                    <p className="text-center">
+                        <span className=" text-[#AEB9E1]">
+                            Don't have an account?{" "}
+                        </span>
+                        <span
+                            className="text-[#1677FF] cursor-pointer"
+                            onClick={() => navigate("/sign-up")}
+                        >
+                            Sign up
+                        </span>
+                    </p>
                 </form>
             </div>
             <div className="h-screen w-[45%] rounded-l-[36px] bg-[#4338CA]"></div>

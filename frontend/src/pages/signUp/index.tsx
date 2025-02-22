@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import StepOne from "../../components/signUp/stepOne";
 import StepTwo from "../../components/signUp/stepTwo";
+import { useNavigate } from "react-router-dom";
 
 const SignUp: React.FC = () => {
+    const navigate = useNavigate();
     const [currentStep, setCurrentStep] = useState(1);
 
     const nextStep = () => setCurrentStep(2);
@@ -10,7 +12,7 @@ const SignUp: React.FC = () => {
     return (
         <div className="flex justify-between">
             {/* left */}
-            <div className="m-auto">
+            <div className="m-auto space-y-5">
                 <p className="text-[24px] font-semibold mb-10">
                     Create an Account
                 </p>
@@ -21,6 +23,17 @@ const SignUp: React.FC = () => {
                         <StepTwo />
                     )}
                 </div>
+                <p className="text-center">
+                    <span className=" text-[#AEB9E1]">
+                        Already have an account?{" "}
+                    </span>
+                    <span
+                        className="text-[#1677FF] cursor-pointer"
+                        onClick={() => navigate("/sign-in")}
+                    >
+                        Sign in
+                    </span>
+                </p>
             </div>
 
             {/* right */}
