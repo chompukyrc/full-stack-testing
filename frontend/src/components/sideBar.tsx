@@ -121,6 +121,7 @@ export const SidebarComponent: React.FC = () => {
                     </div>
                     <div className="flex-1">
                         <Menu menuItemStyles={menuItemStyles} className="p-7">
+                            {/* Dashboard */}
                             <SubMenu
                                 label="Dashboard"
                                 defaultOpen
@@ -131,6 +132,8 @@ export const SidebarComponent: React.FC = () => {
                                 <MenuItem>Products</MenuItem>
                                 <MenuItem>Task</MenuItem>
                             </SubMenu>
+
+                            {/* Users */}
                             <SubMenu
                                 label="Users"
                                 icon={<Icon path={mdiAccount} size={"20px"} />}
@@ -139,9 +142,12 @@ export const SidebarComponent: React.FC = () => {
                                 <MenuItem>Edit User</MenuItem>
                             </SubMenu>
                         </Menu>
+
+                        {/* Divider */}
                         <div className=" w-full border border-b opacity-20"></div>
 
                         <Menu menuItemStyles={menuItemStyles} className="p-7">
+                            {/* Settings */}
                             <SubMenu
                                 label="Settings"
                                 icon={<Icon path={mdiCog} size={"20px"} />}
@@ -149,6 +155,8 @@ export const SidebarComponent: React.FC = () => {
                                 <MenuItem>...</MenuItem>
                                 <MenuItem>...</MenuItem>
                             </SubMenu>
+
+                            {/* Profile */}
                             <SubMenu
                                 label={
                                     <p className="flex flex-col">
@@ -161,7 +169,13 @@ export const SidebarComponent: React.FC = () => {
                                     </p>
                                 }
                                 icon={
-                                    <div className=" rounded-full w-8 h-8 bg-red-400"></div>
+                                    <img
+                                        src={`data:image/png;base64,${
+                                            user.picture ?? ""
+                                        }`}
+                                        alt="User"
+                                        className="rounded-full w-8 h-8 object-cover"
+                                    />
                                 }
                             >
                                 <MenuItem>...</MenuItem>
