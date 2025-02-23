@@ -1,8 +1,9 @@
 import { create } from "zustand";
-import { getUserProfile } from "../api/user";
+import { getUserProfile, uploadProfilePicture } from "../api/user";
 
 interface UserState {
     getUserProfile(id: string): Promise<void>;
+    uploadProfilePicture(file: File): Promise<void>;
     user: {
         id: string;
         first_name: string;
@@ -18,7 +19,7 @@ interface UserState {
     };
 }
 
-export const useUserStore = create<UserState>((set) => ({
+export const useUserStore = create<UserState>((set, get) => ({
     user: {
         id: "",
         first_name: "",
@@ -40,6 +41,23 @@ export const useUserStore = create<UserState>((set) => ({
             set({ user: res.data });
         } catch (error) {
             console.error("Error fetching data: ", error);
+            throw error;
+        }
+    },
+
+    // Upload Profile Image
+    uploadProfilePicture: async (file: File) => {
+        const { user } = get();
+        try {
+            const res = await uploadProfilePicture(user.id, file);
+            set((state) => ({
+                user: {
+                    ...state.user,
+                    picture: res.pictureUrl, // Assuming the API returns the picture URL
+                },
+            }));
+        } catch (error) {
+            console.error("Error uploading profile picture: ", error);
             throw error;
         }
     },

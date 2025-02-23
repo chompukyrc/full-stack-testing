@@ -70,9 +70,7 @@ const StepTwo: React.FC = () => {
             >
                 <div>
                     <input
-                        className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${
-                            errors.first_name ? "border-red-400" : ""
-                        }`}
+                        className="w-full px-[14px] py-[10px] rounded-lg text-sm"
                         placeholder="First Name"
                         type="text"
                         name="first_name"
@@ -88,9 +86,7 @@ const StepTwo: React.FC = () => {
                 </div>
                 <div>
                     <input
-                        className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${
-                            errors.last_name ? "border-red-400" : ""
-                        }`}
+                        className="w-full px-[14px] py-[10px] rounded-lg text-sm"
                         placeholder="Last Name"
                         type="text"
                         name="last_name"
@@ -106,9 +102,7 @@ const StepTwo: React.FC = () => {
                 </div>
                 <div>
                     <input
-                        className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${
-                            errors.age ? "border-red-400" : ""
-                        }`}
+                        className="w-full px-[14px] py-[10px] rounded-lg text-sm "
                         placeholder="Age"
                         type="text"
                         name="age"
@@ -121,9 +115,7 @@ const StepTwo: React.FC = () => {
                 </div>
                 <div>
                     <select
-                        className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${
-                            errors.gender ? "border-red-400" : ""
-                        }`}
+                        className="w-full px-[14px] py-[10px] rounded-lg text-sm"
                         name="gender"
                         value={gender}
                         onChange={handleChange}
@@ -131,12 +123,9 @@ const StepTwo: React.FC = () => {
                         <option value="" disabled>
                             Select Gender
                         </option>
-                        {/* Loop Gender Enum to Options */}
-                        {Object.values(genderEnum).map((genderOption) => (
-                            <option key={genderOption} value={genderOption}>
-                                {genderOption}
-                            </option>
-                        ))}
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="NonBinary">Non-binary</option>
                     </select>
                     {errors.gender && (
                         <p className="text-red-400 text-sm">{errors.gender}</p>
@@ -144,9 +133,7 @@ const StepTwo: React.FC = () => {
                 </div>
                 <div>
                     <input
-                        className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${
-                            errors.phone_number ? "border-red-400" : ""
-                        }`}
+                        className="w-full px-[14px] py-[10px] rounded-lg text-sm"
                         placeholder="Phone Number"
                         type="text"
                         name="phone_number"
