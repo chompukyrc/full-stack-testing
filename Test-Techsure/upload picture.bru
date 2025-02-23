@@ -1,0 +1,15 @@
+meta {
+  name: upload picture
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:3000/users/1282ba1f-1fc5-4598-8b0c-0143c5c0eaab/profile_picture
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  picture: @file(/Users/chompukyrc/Workspaces/tech-sure/full-stack-testing/docker-compose.yml)
+}

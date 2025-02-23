@@ -1,0 +1,15 @@
+meta {
+  name: get picture
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:3000/users/e8712cff-d9f0-4562-b07d-9f1f84cf506a/profile_picture
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  picture: @file(/private/var/folders/_d/68y_ch0j3mg0zdjbgh6_tn3c0000gn/T/com.apple.Photos.NSItemProvider/uuid=F2EFDB1A-5ADD-4C9E-B259-F65B1B0C2B3C&code=001&library=1&type=1&mode=1&loc=true&cap=true.png/Untitled_Artwork.png)
+}
