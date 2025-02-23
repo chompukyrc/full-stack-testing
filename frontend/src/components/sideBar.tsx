@@ -8,7 +8,13 @@ import {
     MenuItemStyles,
 } from "react-pro-sidebar";
 import Icon from "@mdi/react";
-import { mdiUnfoldMoreVertical, mdiHome, mdiAccount, mdiCog } from "@mdi/js";
+import {
+    mdiUnfoldMoreVertical,
+    mdiHome,
+    mdiAccount,
+    mdiCog,
+    mdiMenu,
+} from "@mdi/js";
 import { useUserStore } from "../stores/user.store";
 
 const theme = {
@@ -188,10 +194,10 @@ export const SidebarComponent: React.FC = () => {
             <main>
                 {broken && (
                     <button
-                        className=" bg-red-500 p-8"
+                        className="p-1 absolute"
                         onClick={() => setToggled(!toggled)}
                     >
-                        Toggle
+                        <Icon path={mdiMenu} size={1}></Icon>
                     </button>
                 )}
             </main>
