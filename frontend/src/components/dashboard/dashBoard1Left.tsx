@@ -150,12 +150,12 @@ const Dashboard1Left: React.FC = () => {
                             <div>
                                 <div className=" justify-start items-center gap-1.5 flex">
                                     <div className="text-white text-base">
-                                        $240.8K
+                                        $125.2k
                                     </div>
                                     <div
                                         className={`text-[10px] items-center text-[#14CA74] border-[#14CA74] border-opacity-[0.2] border-[0.6px] bg-opacity-[0.2] px-1 py-[2px] flex h-fit bg-[#05c168] rounded-sm`}
                                     >
-                                        24.6%
+                                        12.5%
                                         <Icon
                                             path={mdiArrowTopRight}
                                             size={0.5}
