@@ -72,9 +72,7 @@ const StepOne: React.FC<StepOneProps> = ({ onNext }) => {
             >
                 <div>
                     <input
-                        className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${
-                            errors.email ? "border-red-400" : ""
-                        }`}
+                        className="w-full px-[14px] py-[10px] rounded-lg text-sm"
                         placeholder="Email"
                         type="email"
                         name="email"
@@ -89,9 +87,7 @@ const StepOne: React.FC<StepOneProps> = ({ onNext }) => {
 
                 <div className="relative">
                     <input
-                        className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${
-                            errors.password ? "border-red-400" : ""
-                        }`}
+                        className="w-full px-[14px] py-[10px] rounded-lg text-sm"
                         placeholder="Password"
                         type={showPassword ? "text" : "password"}
                         name="password"
@@ -129,9 +125,7 @@ const StepOne: React.FC<StepOneProps> = ({ onNext }) => {
 
                 <div className="relative">
                     <input
-                        className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${
-                            errors.confirmPassword ? "border-red-400" : ""
-                        }`}
+                        className="w-full px-[14px] py-[10px] rounded-lg text-sm"
                         placeholder="Confirm Password"
                         type={showPassword ? "text" : "password"}
                         name="confirmPassword"

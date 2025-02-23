@@ -133,10 +133,26 @@ export const SidebarComponent: React.FC = () => {
                                 defaultOpen
                                 icon={<Icon path={mdiHome} size={"20px"} />}
                             >
-                                <MenuItem>All pages</MenuItem>
-                                <MenuItem>Reports</MenuItem>
-                                <MenuItem>Products</MenuItem>
-                                <MenuItem>Task</MenuItem>
+                                <MenuItem
+                                    onClick={() => (window.location.href = "/")}
+                                >
+                                    All pages
+                                </MenuItem>
+                                <MenuItem
+                                    onClick={() => (window.location.href = "/")}
+                                >
+                                    Reports
+                                </MenuItem>
+                                <MenuItem
+                                    onClick={() => (window.location.href = "/")}
+                                >
+                                    Products
+                                </MenuItem>
+                                <MenuItem
+                                    onClick={() => (window.location.href = "/")}
+                                >
+                                    Task
+                                </MenuItem>
                             </SubMenu>
 
                             {/* Users */}
@@ -184,6 +200,13 @@ export const SidebarComponent: React.FC = () => {
                                     />
                                 }
                             >
+                                <MenuItem
+                                    onClick={() =>
+                                        (window.location.href = "/profile")
+                                    }
+                                >
+                                    Profile
+                                </MenuItem>
                                 <MenuItem
                                     onClick={() =>
                                         (window.location.href = "/sign-in")
