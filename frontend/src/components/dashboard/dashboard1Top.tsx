@@ -22,8 +22,8 @@ const Dashboard1Top: React.FC = () => {
                 </div>
             </div>
             {/* graph */}
-            <div className="w-[312.63px] h-[93.36px] relative">
-                <div className="w-[312.63px] h-[75.03px] left-0 top-0 absolute">
+            <div className="w-[312.63px] h-[93.36px] relative mx-auto">
+                <div className="w-[312.63px] h-[75.03px] left-0 top-0 absolute ">
                     <div data-svg-wrapper className="left-0 top-0 absolute">
                         <svg
                             width="314"

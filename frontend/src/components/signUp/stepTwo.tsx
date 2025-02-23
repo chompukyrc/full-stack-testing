@@ -64,7 +64,10 @@ const StepTwo: React.FC = () => {
 
     return (
         <div>
-            <form onSubmit={handleSignUp} className="w-96 space-y-5 text-black">
+            <form
+                onSubmit={handleSignUp}
+                className="md:w-96 w-72 space-y-5 text-black"
+            >
                 <div>
                     <input
                         className={`w-full px-[14px] py-[10px] rounded-lg text-sm ${

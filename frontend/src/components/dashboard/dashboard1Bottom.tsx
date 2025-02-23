@@ -20,7 +20,7 @@ const Dashboard1Bottom: React.FC = () => {
                 </div>
             </div>
             {/* graph */}
-            <div className="w-[312.63px] h-[93.36px] relative">
+            <div className="w-[312.63px] h-[93.36px] relative mx-auto">
                 <div className="w-[320.13px] h-[103.47px] relative">
                     <div className="w-[320.13px] h-[90px] left-0 top-0 absolute">
                         <div

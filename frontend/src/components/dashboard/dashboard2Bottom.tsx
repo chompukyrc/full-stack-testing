@@ -36,9 +36,9 @@ const Dashboard2Bottom: React.FC = () => {
     ];
 
     return (
-        <div className="flex">
-            <div className="w-1/4">
-                <div>
+        <div className="flex max-md:flex-col-reverse flex-row">
+            <div className="md:w-1/4 w-full">
+                <div className="mb-[22px]">
                     <div>Users by country</div>
                     <div className=" flex justify-between items-center">
                         <div className="justify-start items-center gap-1.5 inline-flex">
@@ -82,7 +82,7 @@ const Dashboard2Bottom: React.FC = () => {
                 </div>
             </div>
             {/* map */}
-            <div className="w-3/4 flex justify-center items-center">
+            <div className="md:w-3/4 w-full flex justify-center items-center">
                 <img src="src/assets/map.svg" className=" w-[75%]" />
             </div>
         </div>

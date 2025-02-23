@@ -55,7 +55,7 @@ export const CardStat: React.FC = () => {
             {cardData.map((card, index) => (
                 <div
                     key={index}
-                    className="h-[100px] rounded-lg border-[#343B4F] bg-[#0B1739] w-[250px] p-5 space-y-4 my-2"
+                    className="h-[100px] rounded-lg border-[#343a4e] border bg-[#0B1739] max-[514px]:w-full w-[250px] p-5 space-y-4 my-2"
                 >
                     <div className="flex justify-between">
                         <div className="flex text-[#AEB9E1]">

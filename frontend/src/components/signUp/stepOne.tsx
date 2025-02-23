@@ -68,7 +68,7 @@ const StepOne: React.FC<StepOneProps> = ({ onNext }) => {
         <div>
             <form
                 onSubmit={(e) => e.preventDefault()}
-                className="w-96 space-y-5 text-black"
+                className="md:w-96 w-72 space-y-5 text-black"
             >
                 <div>
                     <input
