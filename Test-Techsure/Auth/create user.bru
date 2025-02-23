@@ -1,0 +1,23 @@
+meta {
+  name: create user
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/auth/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "first_name": "chom",
+    "last_name": "puu",
+    "age": 40,
+    "gender":"Mal",
+    "phone_number":"0998887777",
+    "email":"chom@chompu2.com",
+    "password": "chompu2546"
+  }
+}

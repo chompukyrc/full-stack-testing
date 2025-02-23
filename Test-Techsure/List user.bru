@@ -1,0 +1,17 @@
+meta {
+  name: List user
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:3000/users?sort_direction=asc
+  body: none
+  auth: none
+}
+
+params:query {
+  sort_direction: asc
+  ~limit: 4
+  ~offset: 1
+}
