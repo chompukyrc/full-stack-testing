@@ -32,12 +32,12 @@ const SignIn: React.FC = () => {
     };
 
     return (
-        <div className="flex justify-between">
-            <div className="m-auto">
+        <div className="flex justify-center items-center md:justify-between h-screen">
+            <div className=" m-auto ">
                 <p className="text-[24px] font-semibold mb-10">Sign in</p>
                 <form
                     onSubmit={(e) => e.preventDefault()}
-                    className="w-96 space-y-5 text-black"
+                    className="md:w-96 w-72 space-y-5 text-black"
                 >
                     <input
                         className=" w-full px-[14px] py-[10px] rounded-lg text-sm"
@@ -100,7 +100,7 @@ const SignIn: React.FC = () => {
                     </p>
                 </form>
             </div>
-            <div className="h-screen w-[45%] rounded-l-[36px] bg-[#4338CA]"></div>
+            <div className="h-screen w-[45%] rounded-l-[36px] bg-[#4338CA] max-md:hidden"></div>
         </div>
     );
 };

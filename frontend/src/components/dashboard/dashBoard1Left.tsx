@@ -3,8 +3,8 @@ import { mdiArrowTopRight, mdiCalendarBlank, mdiChevronDown } from "@mdi/js";
 
 const Dashboard1Left: React.FC = () => {
     return (
-        <div className=" w-full p-10">
-            <div className="flex justify-between w-full">
+        <div className=" w-full p-6 ">
+            <div className="flex justify-between w-full flex-col md:flex-row">
                 <div>
                     <div className="w-[150px] h-14 relative ">
                         <div className="left-[1.23px] top-0 absolute text-[#adb9e1] text-sm font-medium leading-[14px]">
@@ -41,10 +41,10 @@ const Dashboard1Left: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div className="mt-7">
+            <div className="mt-7 justify-center">
                 {/* Scale */}
-                <div className="flex flex-row items-end">
-                    <div className="h-[356px] flex flex-col justify-start items-end gap-[43px] ">
+                <div className="flex flex-row items-end justify-center">
+                    <div className=" flex flex-col justify-start items-end gap-[43px] max-md:gap-[30px] max-sm:gap-[10px]">
                         {[
                             "250K",
                             "200K",
@@ -63,7 +63,7 @@ const Dashboard1Left: React.FC = () => {
                         ))}
                     </div>
                     {/* graph */}
-                    <div className="w-[548.06px] h-[322.36px] relative ml-4">
+                    <div className="w-[548.06px] h-[322.36px] max-md:scale-75 max-sm:scale-50 max-md:top-8 max-md:right-8 max-sm:top-16 max-sm:right-16 relative md:ml-4">
                         {/* graph line */}
                         <div
                             data-svg-wrapper
@@ -174,7 +174,7 @@ const Dashboard1Left: React.FC = () => {
                     </div>
                 </div>
                 {/* Month */}
-                <div className="flex ">
+                <div className="flex justify-center">
                     <div className="w-[510px] h-3.5 justify-between items-center inline-flex ml-14 mt-6">
                         {[
                             "Jan",

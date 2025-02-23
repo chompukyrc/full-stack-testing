@@ -99,7 +99,7 @@ export const SidebarComponent: React.FC = () => {
                 onBackdropClick={() => setToggled(false)}
                 style={{ boxShadow: "0px 8px 28px 0px rgba(1, 5, 17, 0.30)" }}
                 className="!border-[#0B1739] h-screen w-[300px]"
-                breakPoint="md"
+                breakPoint="lg"
                 onBreakPoint={setBroken}
                 backgroundColor={hexToRgba(theme.sidebar.backgroundColor, 1)}
                 rootStyles={{
@@ -184,8 +184,13 @@ export const SidebarComponent: React.FC = () => {
                                     />
                                 }
                             >
-                                <MenuItem>...</MenuItem>
-                                <MenuItem>...</MenuItem>
+                                <MenuItem
+                                    onClick={() =>
+                                        (window.location.href = "/sign-in")
+                                    }
+                                >
+                                    Logout
+                                </MenuItem>
                             </SubMenu>
                         </Menu>
                     </div>
