@@ -5,7 +5,7 @@ import { mdiArrowDown } from "@mdi/js";
 export const Welcome: React.FC = () => {
     const user = useUserStore((state) => state.user);
     return (
-        <div className=" flex justify-between">
+        <div className=" flex justify-between items-center">
             <div>
                 <p className=" text-2xl">Welcome back, {user.first_name}</p>
                 <p className="text-[#AEB9E1] text-xs">
