@@ -66,7 +66,7 @@ We need you to implement the following interface and API server using React and 
 
 **Change to the backend directory**
 
-```
+```bash
 cd backend
 ```
 
@@ -79,7 +79,7 @@ DATABASE_URL="protocol://username:password@ip:port/database_name"
 
 In use
 
-```
+```env
 DATABASE_URL="postgresql://postgres:postgres@127.0.0.1:5433/user_dev?schema=public"
 ```
 
@@ -101,13 +101,21 @@ npm run start:dev
 npx prisma studio
 ```
 
+**Test Api**
+If you have Bruno
+(Bruno is a Git-friendly and offline-first open-source API client aimed at revolutionizing the status quo represented by tools like Postman and Insomnia.)
+
+-   Open Bruno
+-   Click open collection
+-   Browse folder **/collecntion-api** in project
+
 ---
 
 ## Start Frontend
 
 **Change to the frontend directory**
 
-```
+```bash
 cd frontend
 ```
 
@@ -124,4 +132,3 @@ yarn dev
 ```
 
 ---
-
