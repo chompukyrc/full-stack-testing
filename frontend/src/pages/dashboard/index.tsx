@@ -8,7 +8,7 @@ import Dashboard2 from "../../components/dashboard/dashboard2";
 const Dashboard = () => {
     return (
         <Layout>
-            <div className=" pt-8 w-full max-w-[1046px] mx-auto">
+            <div className="py-8 w-full max-w-[1046px] mx-auto">
                 <Welcome />
                 <CardStat />
                 <Dashboard1 />
